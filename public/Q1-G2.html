@@ -1,0 +1,39 @@
+</script>
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <h2> Q1 3rd Graded Exercise submitted by Bartolome of Sodium</h2>
+
+    
+    <input id="in1" type="number" placeholder="Meal Price">
+    <input id="in2" type="number" placeholder="Service Charge (%)">
+    <input id="in3" type="number" placeholder="Tip">
+
+    <button onclick="totalMeal()">Calculate Total</button>
+
+    <div id="out1"></div>
+    
+
+    <script>
+        function totalMeal() {
+            var in1 = document.getElementById("in1").value
+            var in2 = document.getElementById("in2").value
+            // var in3 = document.getElementById("in3").value;
+
+            var Price = parseFloat(in1);
+            var Charge = parseFloat(in2) / 100;
+            var Tip = Number(in3.value);
+
+            var total = Price + (Price * Charge) + Tip;
+            alert("Total Amount: " + total.toFixed(2));
+            out1.innerHTML = "Total Amount: " + total.toFixed(2);
+            console.log("Total Amount: " + total.toFixed(2));
+            
+         
+            }
+    </script>
+
+</body>
+</html>
