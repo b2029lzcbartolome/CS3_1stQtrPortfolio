@@ -5,7 +5,9 @@
     <title>Sodium Class Schedule</title>
     
     <h1 style="text-align: center;">Sodium Class Schedule</h1>
-    
+
+    <link rel="stylesheet" href="[css].css" />
+
     <style>
         .nav-header {
             text-align: center; 
@@ -147,7 +149,6 @@
      <iframe width="560" height="315" src="https://www.youtube.com/embed/VRJFm-b2VUs?si=Tz0lBKav5R8WyITX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <td> I chose this video to represent my feelings for Monday since like the person in this video, I'm usually not doing amazing mentally.</td>    
    
-    
     
 
 </body>
