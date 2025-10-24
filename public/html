@@ -4,9 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sodium Class Schedule</title>
     
+    <link rel="stylesheet" href="[style].css" />
+
     <h1 style="text-align: center;">Sodium Class Schedule</h1>
 
-    <link rel="stylesheet" href="[css].css" />
+   
 
     <style>
         .nav-header {
@@ -153,3 +155,7 @@
 
 </body>
 </html>
+
+<footer style="background-color: #7c1a1a; color: white; text-align: center; padding: 20px; margin-top: 30px;">
+        © 2025 Liam Bartolome
+    </footer>
