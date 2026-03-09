@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Sign-Up System</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+form, .view {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+fieldset {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+}
+
+th {
+    background: #ddd;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+
+<script>
+/* ---------- FORM LOGIC ---------- */
+function saveFormData() {
+    if (!confirm("Are you sure you want to submit the form?")) return false;
+
+    const signup = {
+        studentID: studentID.value,
+        fullName: fullName.value,
+        birthday: birthday.value,
+        email: email.value,
+        mobile: mobilePhone.value,
+        grade: gradeLevel.value,
+        section: section.value,
+        role: document.querySelector('input[name="role"]:checked').value,
+        clubA: preferredClubA.value,
+        clubB: preferredClubB.value,
+        reason: reason.value,
+        date: new Date().toLocaleString()
+    };
+
+    let signups = JSON.parse(localStorage.getItem("signups"));
+    if (!signups) signups = [];
+
+    signups.push(signup);
+    localStorage.setItem("signups", JSON.stringify(signups));
+
+    alert("Sign-up saved successfully!");
+    return false; // keep page visible
+}
+
+/* ---------- VIEW TOGGLING ---------- */
+function showView() {
+    document.getElementById("formSection").classList.add("hidden");
+    document.getElementById("viewSection").classList.remove("hidden");
+    loadTable();
+}
+
+function showForm() {
+    document.getElementById("viewSection").classList.add("hidden");
+    document.getElementById("formSection").classList.remove("hidden");
+}
+
+/* ---------- VIEW SIGNUPS ---------- */
+function loadTable(filter = "ALL") {
+    const tbody = document.getElementById("tableBody");
+    const total = document.getElementById("total");
+
+    tbody.innerHTML = "";
+    let signups = JSON.parse(localStorage.getItem("signups"));
+
+    if (!signups || signups.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='6'>No sign-ups saved.</td></tr>";
+        total.textContent = 0;
+        return;
+    }
+
+    let filtered = signups.filter(s =>
+        filter === "ALL" || s.clubA === filter || s.clubB === filter
+    );
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = "<tr><td colspan='6'>No sign-ups for this club.</td></tr>";
+        total.textContent = 0;
+        return;
+    }
+
+    filtered.forEach(s => {
+        tbody.innerHTML += `
+        <tr>
+            <td>${s.studentID}</td>
+            <td>${s.fullName}</td>
+            <td>${s.grade}</td>
+            <td>${s.clubA}</td>
+            <td>${s.clubB}</td>
+            <td>${s.role}</td>
+        </tr>`;
+    });
+
+    total.textContent = filtered.length;
+}
+
+function filterClub() {
+    loadTable(clubFilter.value);
+}
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- ================= SIGN-UP FORM ================= -->
+<div id="formSection">
+<h2>Club / Organization Sign-Up</h2>
+
+<form onsubmit="return saveFormData()">
+<fieldset>
+<legend>Personal Information</legend>
+
+<label>Student ID
+<input type="text" id="studentID" required></label>
+
+<label>Full Name
+<input type="text" id="fullName" required></label>
+
+<label>Birthday
+<input type="date" id="birthday" required></label>
+
+<label>Email
+<input type="email" id="email" required></label>
+</fieldset>
+
+<fieldset>
+<legend>Contact Information</legend>
+
+<label>Mobile Phone
+<input type="tel" id="mobilePhone" required></label>
+
+<label>Grade Level
+<select id="gradeLevel" required>
+<option value="">Select</option>
+<option>7</option><option>8</option><option>9</option>
+<option>10</option><option>11</option><option>12</option>
+</select></label>
+
+<label>Section
+<input type="text" id="section" required></label>
+</fieldset>
+
+<fieldset>
+<legend>Application Details</legend>
+
+<label>
+<input type="radio" name="role" value="Intern" required> Intern
+<input type="radio" name="role" value="Extern"> Extern
+</label>
+
+<label>Preferred Club A
+<select id="preferredClubA" required>
+<option value="">Select</option>
+<option>Aksis</option>
+<option>Computron</option>
+<option>Invictus</option>
+<option>Celluloid</option>
+</select></label>
+
+<label>Preferred Club B
+<select id="preferredClubB" required>
+<option value="">Select</option>
+<option>ATOM</option>
+<option>ACTS</option>
+<option>Flux</option>
+<option>Animo</option>
+</select></label>
+
+<label>Why do you want to join?
+<textarea id="reason" rows="4" required></textarea></label>
+</fieldset>
+
+<button type="submit">Submit</button>
+<button type="button" onclick="showView()">View Sign-Ups</button>
+<button type="reset">Reset</button>
+</form>
+</div>
+
+<!-- ================= VIEW SIGNUPS ================= -->
+<div id="viewSection" class="hidden view">
+<h2>View Sign-Ups</h2>
+
+<label>Filter by Club:
+<select id="clubFilter" onchange="filterClub()">
+<option value="ALL">ALL</option>
+<option>Aksis</option>
+<option>Computron</option>
+<option>Invictus</option>
+<option>Celluloid</option>
+<option>ATOM</option>
+<option>ACTS</option>
+<option>Flux</option>
+<option>Animo</option>
+</select>
+</label>
+
+<p>Total Sign-Ups: <strong id="total">0</strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Student ID</th>
+<th>Name</th>
+<th>Grade</th>
+<th>Club A</th>
+<th>Club B</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+
+<br>
+<button onclick="showForm()">⬅ Back to Sign-Up</button>
+</div>
+
+</div>
+</body>
+</html>
