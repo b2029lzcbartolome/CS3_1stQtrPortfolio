@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="author" content="Sir Roy/Al Mendoza">
+  <meta name="description" content="testing and debugging">
+  <meta name="keywords" content="testing and debugging">
+  <title>CS3 </title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@300&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+  <style>
+    tr:nth-child(1) ~ tr:nth-child(odd) {
+      background-color: lightgray;
+      color: black;
+    }
+    td, th {
+      padding: 10px;
+    }
+    table {
+      width: 90%;
+      margin: 0 auto;
+    }
+    caption {
+      font-size: 2em;
+      font-weight: bold;
+      padding: 10px;
+    }
+    
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="index.html#start">Table</a>
+      <a href="index.html#input">Input</a>
+      <a href="index.html#output">Output</a>
+    </nav>
+    
+    <h1 style="padding: 30px">Your Name / Section Mar 2026 </h1>
+  </header>
+
+  <section id="table">
+    <table> 
+      <caption> Error Logs - place errors found in the table below</caption>
+      <tr class="rColor">
+        <th> item# </th> 
+        <th> code line#<br/>CSS or JS </th> 
+        <th> Description</th>
+        <th> Correction Done</th>
+      </tr>
+      <tr>
+        <td> 1 </td> 
+        <td> 6-8 CSS </td> 
+        <td> The fonts are formatted in a way that only the last font will be used. </td>
+        <td> font-family: 'Open Sans', 'Poppins', 'Roboto', sans-serif; </td>
+      </tr>
+      <tr>
+        <td> 2 </td> 
+        <td> 23 CSS </td> 
+        <td> The requirement is that the element should not scroll, yet the element is not fixed. </td>
+        <td> position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000; </td>
+      </tr>
+      <tr>
+        <td> 3 </td> 
+        <td> 28 CSS </td> 
+        <td> The block forces each link into its own different line. </td>
+        <td> display: inline-block; </td>
+      </tr>
+      <tr>
+        <td> 4 </td> 
+        <td> 34 CSS </td> 
+        <td> The space makes it target elements inside <a>, not the link itself. </td>
+        <td> nav a:hover </td>
+      </tr>
+      <tr>
+        <td> 5 </td> 
+        <td> 47 CSS </td> 
+        <td> The point will not be placed properly on the coordinate plane. </td>
+        <td> position: absolute; </td>
+      </tr>
+      <tr>
+        <td> 6 </td> 
+        <td> 2 JS </td> 
+        <td> The variables are not defined. </td>
+        <td> function plotPoint(x0, y0, x, y)  </td>
+      </tr>
+      <tr>
+        <td> 7 </td> 
+        <td> 3 JS </td> 
+        <td> in1 is not defined. </td>
+        <td> var in1 = document.getElementById("in1"); </td>
+      </tr>
+      <tr>
+        <td> 8 </td> 
+        <td> 7 JS </td> 
+        <td> styleleft is incorrectly coded. </td>
+        <td> point.style.left = ... </td>
+      </tr>
+      <tr>
+        <td> 9 </td> 
+        <td> 8 JS </td> 
+        <td> stylebottom is incorrectly coded. </td>
+        <td> point.style.bottom = ... </td>
+      </tr>
+      <tr>
+        <td> 10 </td> 
+        <td> 11-23 </td> 
+        <td> out1 was not orignally defined, meaning it would mess up the rest of the code. </td>
+        <td> var out1 = document.getElementById("out1"); </td>
+      </tr>
+     
+    </table>
+    <hr>
+  </section>
+  
+   
+  <!--- anchors for socmed site are done with image sprites -->
+  <footer>
+    <a href="https://facebook.com"> 
+    <div class="icon facebook"></div>
+    </a>
+    <a href="https://twitter.com">
+    <div class="icon twitter"></div>
+    </a>
+    <a href="https://github.com">
+    <div class="icon github"></div>
+    </a>
+  </footer>
+ 
+</body>
+
+</html>
